@@ -1,9 +1,11 @@
 function pokemones(url_a_consumir) {
+    console.log(url_a_consumir)
     // var api_url = "https://pokeapi.co/api/v2/pokemon"
+    document.querySelector("#carta-pokemon").innerHTML=''
 var consumo = fetch(url_a_consumir)
 consumo.then(res => res.json())
     .then((pokemon) => {
-        document.querySelector("#carta-pokemon").innerHTML=''
+        
         for (const pokemon1 of pokemon.results) {
             var picachu = fetch(pokemon1.url)
             picachu.then(bulbasor => bulbasor.json())
@@ -96,5 +98,14 @@ function creacion_boton(url_pagina_siguiente, url_pagina_anterior){
     paginasion.appendChild(btn_anterior)
 
 }
+
+
+
+
+var btn_busqueda=document.querySelector("#buscar")
+btn_busqueda.addEventListener('click',()=>{
+    var busqueda=document.querySelector('#bus_texto').value
+    pokemones("https://pokeapi.co/api/v2/pokemon/"+busqueda)
+})
 
 pokemones('https://pokeapi.co/api/v2/pokemon')
